@@ -1,0 +1,14 @@
+:root { font-family: -apple-system, system-ui, "PingFang SC", sans-serif; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { display: grid; place-items: center; background: linear-gradient(#fdfbfb, #ebedee); }
+#app {
+  width: min(92vw, 480px);
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  text-align: center;
+}
+button { padding: 12px 18px; border-radius: 12px; border: 1px solid #ddd; background: #fafafa; font-size: 16px; }
+button:active { transform: scale(0.98); }
