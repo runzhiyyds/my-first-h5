@@ -1,70 +1,98 @@
 <!DOCTYPE html>
 <html lang="zh">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>双轨美国：派对与饥饿 · 互动体验</title>
+  <script type="module" crossorigin src="/my-first-h5/assets/index-Dwo9Ba5G.js"></script>
+  <link rel="stylesheet" crossorigin href="/my-first-h5/assets/index-Ci48vi6a.css">
+</head>
 
-    <title>派对与饥饿：双轨美国 DEMO</title>
+<body>
 
-    <!-- 全局样式 -->
-    <script type="module" crossorigin src="/my-first-h5/assets/index-Cfdb-qWw.js"></script>
-    <link rel="stylesheet" crossorigin href="/my-first-h5/assets/index-C2UdRCKm.css">
-  </head>
+  <!-- ✅ 粒子光 Canvas（全局背景） -->
+  <canvas id="particle-canvas"></canvas>
 
-  <body>
+  <!-- ✅ 角色选择界面（初始显示） -->
+  <div id="role-select-screen" class="screen active-screen">
+    <h1 class="role-title">选择你的角色</h1>
 
-    <!-- 粒子光斑背景层（高端感动效） -->
-    <canvas id="particleCanvas"></canvas>
+    <div class="role-carousel">
 
-    <!-- 双屏背景：上屏派对，下屏民生（由 JS 动态切换） -->
-    <div id="bg-top" class="bg-layer"></div>
-    <div id="bg-bottom" class="bg-layer"></div>
-
-    <!-- Art Deco 金框装饰 -->
-    <div class="deco-frame deco-top"></div>
-    <div class="deco-frame deco-bottom"></div>
-
-    <!-- 主交互区域 -->
-    <div id="app">
-
-      <!-- 游戏标题 -->
-      <header class="game-header">
-        <h1 class="title">派对与饥饿</h1>
-        <div class="subtitle">双轨新闻式叙事实验互动</div>
-      </header>
-
-      <!-- 资源状态条（奢华、愤怒、预算） -->
-      <section class="status-panel glass">
-        <div class="status-item">
-          <span>派对奢华度</span>
-          <div class="bar"><div id="luxuryBar" class="bar-fill gold"></div></div>
-          <span id="luxuryNum" class="status-num">50</span>
+      <!-- ✅ 角色卡片：派对组织者 -->
+      <div class="role-card" data-role="planner">
+        <img src="/my-first-h5/images/party1.jpg" class="role-img" />
+        <div class="role-info">
+          <h2>派对组织者</h2>
+          <p>维持奢华、处理危机、守住宾客的笑容。</p>
         </div>
+      </div>
 
-        <div class="status-item">
-          <span>全国愤怒指数</span>
-          <div class="bar"><div id="angerBar" class="bar-fill red"></div></div>
-          <span id="angerNum" class="status-num">50</span>
+      <!-- ✅ 角色卡片：白宫幕僚 -->
+      <div class="role-card" data-role="staff">
+        <img src="/my-first-h5/images/party3.jpg" class="role-img" />
+        <div class="role-info">
+          <h2>白宫幕僚</h2>
+          <p>舆论、政治、火线处理，一切都在爆炸边缘。</p>
         </div>
+      </div>
 
-        <div class="status-item">
-          <span>政府预算</span>
-          <div class="bar"><div id="budgetBar" class="bar-fill blue"></div></div>
-          <span id="budgetNum" class="status-num">60</span>
+      <!-- ✅ 角色卡片：SNAP 受影响家庭 -->
+      <div class="role-card" data-role="family">
+        <img src="/my-first-h5/images/foodline1.jpg" class="role-img" />
+        <div class="role-info">
+          <h2>SNAP 家庭</h2>
+          <p>你看到的是另一条现实线：生存。</p>
         </div>
-      </section>
-
-      <!-- 事件交互卡片 -->
-      <section id="eventBox" class="event-panel glass">
-        <button id="startBtn" class="btn start-btn">开始体验</button>
-      </section>
-
-      <!-- 结局区域 -->
-      <section id="endingBox" class="ending-panel glass hidden"></section>
+      </div>
 
     </div>
+  </div>
 
-    <!-- 主逻辑脚本 -->
-  </body>
+  <!-- ✅ 游戏主界面（初始隐藏） -->
+  <div id="game-screen" class="screen hidden">
+
+    <!-- ✅ 上半屏：派对动态区 -->
+    <div id="upper-screen" class="half-screen upper">
+      <div id="upper-bg" class="bg-image"></div>
+      <div class="overlay-gradient"></div>
+      <div class="status-panel glass-panel">
+        <div class="status-item">
+          <span>预算</span>
+          <div class="bar"><div id="budget-bar" class="bar-fill gold"></div></div>
+          <span id="budget-num" class="num"></span>
+        </div>
+
+        <div class="status-item">
+          <span id="role-main-value-name">派对声望</span>
+          <div class="bar"><div id="main-bar" class="bar-fill blue"></div></div>
+          <span id="main-num" class="num"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ✅ 下半屏：现实新闻图事件区 -->
+    <div id="lower-screen" class="half-screen lower">
+      <div id="lower-bg" class="bg-image"></div>
+      <div class="overlay-dark"></div>
+
+      <div id="event-panel" class="event-panel glass-panel">
+        <h2 id="event-title"></h2>
+        <button id="optionA" class="event-btn"></button>
+        <button id="optionB" class="event-btn"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ 结局界面 -->
+  <div id="ending-screen" class="screen hidden">
+    <div class="ending-content glass-panel">
+      <h1 id="ending-text"></h1>
+      <button id="restart-btn" class="restart-btn">重玩</button>
+    </div>
+  </div>
+
+  <!-- ✅ 核心逻辑 JS -->
+
+</body>
 </html>
