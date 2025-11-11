@@ -1,28 +1,70 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh">
   <head>
-    <meta name="description" content="我的第一个 H5 项目：最小交互、极速上线。">
-    <meta property="og:title" content="我的第一个 H5" />
-    <meta property="og:description" content="最小交互、极速上线。" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://runzhiyyds.github.io/my-first-h5/" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="theme-color" content="#ffffff" />
-<link rel="icon" href="/my-first-h5/favicon.ico">
     <meta charset="UTF-8" />
-    <!-- 视口：按设备宽度排版，移动端不失真 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>我的第一个 H5</title>
-    <link rel="icon" href="/favicon.ico" />
-    <script type="module" crossorigin src="/my-first-h5/assets/index-UxN9cHu9.js"></script>
-    <link rel="stylesheet" crossorigin href="/my-first-h5/assets/index-CTFZ6q0t.css">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <title>派对与饥饿：双轨美国 DEMO</title>
+
+    <!-- 全局样式 -->
+    <script type="module" crossorigin src="/my-first-h5/assets/index-Cfdb-qWw.js"></script>
+    <link rel="stylesheet" crossorigin href="/my-first-h5/assets/index-C2UdRCKm.css">
   </head>
+
   <body>
-    <main id="app">
-      <h1>你好，H5</h1>
-      <p>点击次数：<span id="count">0</span></p>
-      <button id="btn">点我 +1</button>
-    </main>
-    <!-- 告诉浏览器这是 ES 模块入口；Vite 会按需加载 -->
+
+    <!-- 粒子光斑背景层（高端感动效） -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- 双屏背景：上屏派对，下屏民生（由 JS 动态切换） -->
+    <div id="bg-top" class="bg-layer"></div>
+    <div id="bg-bottom" class="bg-layer"></div>
+
+    <!-- Art Deco 金框装饰 -->
+    <div class="deco-frame deco-top"></div>
+    <div class="deco-frame deco-bottom"></div>
+
+    <!-- 主交互区域 -->
+    <div id="app">
+
+      <!-- 游戏标题 -->
+      <header class="game-header">
+        <h1 class="title">派对与饥饿</h1>
+        <div class="subtitle">双轨新闻式叙事实验互动</div>
+      </header>
+
+      <!-- 资源状态条（奢华、愤怒、预算） -->
+      <section class="status-panel glass">
+        <div class="status-item">
+          <span>派对奢华度</span>
+          <div class="bar"><div id="luxuryBar" class="bar-fill gold"></div></div>
+          <span id="luxuryNum" class="status-num">50</span>
+        </div>
+
+        <div class="status-item">
+          <span>全国愤怒指数</span>
+          <div class="bar"><div id="angerBar" class="bar-fill red"></div></div>
+          <span id="angerNum" class="status-num">50</span>
+        </div>
+
+        <div class="status-item">
+          <span>政府预算</span>
+          <div class="bar"><div id="budgetBar" class="bar-fill blue"></div></div>
+          <span id="budgetNum" class="status-num">60</span>
+        </div>
+      </section>
+
+      <!-- 事件交互卡片 -->
+      <section id="eventBox" class="event-panel glass">
+        <button id="startBtn" class="btn start-btn">开始体验</button>
+      </section>
+
+      <!-- 结局区域 -->
+      <section id="endingBox" class="ending-panel glass hidden"></section>
+
+    </div>
+
+    <!-- 主逻辑脚本 -->
   </body>
 </html>
